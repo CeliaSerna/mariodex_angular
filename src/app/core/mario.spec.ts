@@ -15,24 +15,30 @@ describe('MarioService', () => {
     httpMock = TestBed.inject(HttpTestingController);
   });
 
-  it('debe recuperar la lista de personajes (GET)', () => {
-    const mockPersonajes = [
-      { id: 1, nombre: 'Mario', tipo: 'Protagonista' },
-      { id: 2, nombre: 'Luigi', tipo: 'Secundario' }
-    ];
-
-//service.getPokemons().subscribe(personajes => {
- //     expect(personajes.length).toBe(2);
-  //    expect(personajes).toEqual(mockPersonajes);
- //   });
-
-    // Simulamos la llamada a tu API (ajusta la URL a la que uses)
-    const req = httpMock.expectOne('http://localhost:8000/personajes/crear'); 
-    expect(req.request.method).toBe('GET');
-    req.flush(mockPersonajes); // Enviamos los datos ficticios
+  // Esto asegura que no queden peticiones sin responder
+  afterEach(() => {
+    httpMock.verify();
   });
 
-  afterEach(() => {
-    httpMock.verify(); // Verifica que no queden peticiones colgadas
+  it('debe recuperar la lista de personajes (GET)', () => {
+    // Definimos los datos falsos (MOCK)
+    const mockPersonajes = [
+      { nombre: 'Mario', tipo: 'Héroe', poder: '100',  mundo: 'tierra' },
+      { nombre: 'Luigi', tipo: 'Héroe', poder: '90',  mundo: 'tierra' }
+    ];
+
+    // Llamamos al método del servicio
+  service.getPokemons();
+
+    // Simulamos la llamada a API 
+    const req = httpMock.expectOne('http://localhost:8000/personajes'); 
+    expect(req.request.method).toBe('GET');
+    req.flush(mockPersonajes); // Enviamos los datos ficticios
+
+  // Verificamos que el BehaviorSubject se haya actualizado
+    service.pokemons$.subscribe(personajes => {
+      expect(personajes.length).toBe(2);
+      expect(personajes[0].nombre).toBe('Mario');
+    });
   });
 });

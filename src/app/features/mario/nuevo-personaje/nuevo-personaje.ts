@@ -17,6 +17,7 @@ export class NuevoPersonaje {
   nombre = '';
   tipo = '';
   nivel = '';
+  mundo = '';
 
   constructor(private marioService: MarioService) {}
 
@@ -26,8 +27,8 @@ export class NuevoPersonaje {
     const nuevo: Mario = {
       nombre: this.nombre,
       tipo: this.tipo,
-      nivel: this.nivel
-          
+      nivel: this.nivel,
+      mundo: this.mundo,
     };
 
     this.marioService.addPokemon(nuevo);
