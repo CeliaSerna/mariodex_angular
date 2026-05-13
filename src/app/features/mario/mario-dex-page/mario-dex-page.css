@@ -2,8 +2,16 @@ h1{
     font-size: 50px;
     color: blue;
     margin-left: 20px;
-    padding-bottom: 20px;
     text-shadow: 2px 2px yellow;
+}
+h2 {
+    font-family: monospace;
+    font-size: 25px;
+    color: green;
+    margin-left: 20px;
+    padding-bottom: 20px;
+    /*text-shadow: 1px 1px blue;*/
+    font-style: italic;
 }
 button{
    background-color: yellow;
