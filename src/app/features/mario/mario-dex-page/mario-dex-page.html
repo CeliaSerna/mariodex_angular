@@ -1,0 +1,30 @@
+<h1>MarioDex</h1>
+<button (click)="abrirModal()">Añadir personaje</button>
+
+<!-- Modal -->
+<div class="modal-fondo" *ngIf="modalAbierto">
+  <div class="modal-contenido">
+    <app-nuevo-personaje (nuevo)="cerrarModal()"></app-nuevo-personaje>
+    <button (click)="cerrarModal()">Cerrar</button>
+  </div>
+</div>
+
+<div class="pokedex-container">
+  <div class="pokemon-list">
+    <div class="pokemon-card"
+         *ngFor="let p of personajes">
+
+      <h3>{{ p.nombre }}</h3>
+      <p>Tipo: {{ p.tipo }}</p>
+      <p>Nivel: {{p.nivel}}</p>
+
+      <button (click)="eliminarPokemon(p.nombre)">
+        Eliminar ❌
+      </button>
+
+    </div>
+     <p *ngIf="personajes.length === 0">
+      No hay personajes todavía 🍄
+    </p>
+  </div>
+</div>

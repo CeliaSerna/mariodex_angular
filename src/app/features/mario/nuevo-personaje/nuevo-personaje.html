@@ -1,0 +1,9 @@
+<h2>Nuevo Personaje</h2>
+<form (ngSubmit)="agregarPokemon()">
+  
+  <label>Nombre: <input [(ngModel)]="nombre" name="nombre" required size="15"></label><br>
+  <label>Tipo:&nbsp; <input [(ngModel)]="tipo" name="tipo" required size="10"></label><br>
+  <label>Nivel:&nbsp;<input [(ngModel)]="nivel" name="nivel" required size="3"></label><br>
+  <br>
+  <button type="submit">Añadir</button>
+</form>
